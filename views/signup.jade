@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    h1 Sign up to ioSense.
+    if error
+        p.
+            #{error}
+    form(action="/auth/signup", method="POST")
+        input(type="hidden", name="_csrf", value=csrfToken)
+        input(type="hidden", name="challenge", value=challenge)
+        table(style="")
+            tr
+                td.
+                    Username:
+                td
+                    input(type="text", name="username")
+            tr
+                td.
+                    Password:
+                td
+                    input(type="password", name="password")
+        input(type="checkbox", id="remember", name="remember", value="1")
+        label(for="remember") Remember me
+        br
+        input(type="submit", value="Sign up")
+        a(href="/auth/signin?login_challenge=#{challenge}").
+            Already an account? Sign in

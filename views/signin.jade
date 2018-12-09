@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    h1 Please sign in with your Data-Centric Design Hub credentials.
+    if error
+        p.
+            #{error}
+    form(action="/auth/signin", method="POST")
+        input(type="hidden", name="_csrf", value=csrfToken)
+        input(type="hidden", name="challenge", value=challenge)
+        table(style="")
+            tr
+                td.
+                    Username:
+                td
+                    input(type="text", name="username")
+            tr
+                td.
+                    Password:
+                td
+                    input(type="password", name="password")
+        input(type="checkbox", id="remember", name="remember", value="1")
+        label(for="remember") Remember me
+        br
+        input(type="submit",value="Log in")
+        a(href="/auth/signup?_csrf=#{csrfToken}&login_challenge=#{challenge}").
+            Not yet an account? Sign up
