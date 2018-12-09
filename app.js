@@ -16,7 +16,7 @@ const csrfProtection = csrf({cookie: true});
 const url = require('url');
 const hydra = require('./services/hydra');
 
-const Auth = require('iosense-model/lib/Auth');
+const Auth = require('dcd-model/lib/Auth');
 const auth = new Auth();
 
 // view engine setup
@@ -174,7 +174,7 @@ app.post(baseUrl + '/consent', csrfProtection, function(req, res, next) {
 });
 
 function buildIDToken(grant_scope, subject) {
-    const username = subject.replace('iosense:persons:', '');
+    const username = subject.replace('dcd:persons:', '');
     const idToken = {};
     // This is the openid 'profile' scope which should include
     // some user profile data. (optional)
@@ -374,7 +374,7 @@ function login(req, res, next) {
     hydra.acceptLoginRequest(req.body.challenge, {
         // Subject is an alias for user ID. A subject can be a random string,
         // a UUID, an email address, ....
-        subject: 'iosense:persons:' + req.subject,
+        subject: 'dcd:persons:' + req.subject,
 
         // This tells hydra to remember the browser and automatically
         // authenticate the user in future requests. This will
