@@ -1,0 +1,13 @@
+doctype html
+
+html
+    head
+        title= title
+        style
+            | pre { width: 100%; overflow-x: auto }
+
+        base(href=baseUrl + '/')
+        link(rel='stylesheet' href='style.css')
+        script(src='script.js')
+    body
+        block content
