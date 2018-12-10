@@ -28,8 +28,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(baseUrl, express.static(path.join(__dirname, 'public'), {
+    etag: false,
+    maxAge: 100,
+}));
 
 app.get(baseUrl + '/', function(req, res) {
     res.render('index');
@@ -85,6 +88,7 @@ app.get(baseUrl + '/consent', csrfProtection, function(req, res, next) {
 
             // If consent can't be skipped we MUST show the consent UI.
             res.render('consent', {
+                baseUrl: baseUrl,
                 csrfToken: req.csrfToken(),
                 challenge: challenge,
                 // We have a bunch of data available from the response,
@@ -240,6 +244,7 @@ app.get(baseUrl + '/signin', csrfProtection, function(req, res, next) {
             // If authentication can't be skipped
             // we MUST show the login UI.
             res.render('signin', {
+                baseUrl: baseUrl,
                 csrfToken: req.csrfToken(),
                 challenge: challenge,
             });
@@ -276,6 +281,7 @@ app.post(baseUrl + '/signin', csrfProtection, function(req, res, next) {
                     // Looks like the user provided invalid credentials,
                     // let's show the ui again...
                     res.render('signin', {
+                        baseUrl: baseUrl,
                         csrfToken: req.csrfToken(),
                         challenge: challenge,
                         error: 'The username / password combination is not correct'
@@ -322,6 +328,7 @@ app.get(baseUrl + '/signup', csrfProtection, function(req, res, next) {
             // If authentication can't be skipped
             // we MUST show the sign up UI.
             res.render('signup', {
+                baseUrl: baseUrl,
                 csrfToken: req.csrfToken(),
                 challenge: challenge,
             });
@@ -351,6 +358,7 @@ app.post(baseUrl + '/signup', csrfProtection, function(req, res, next) {
             })
             .catch((error) => {
                 res.render('signup', {
+                    baseUrl: baseUrl,
                     csrfToken: req.csrfToken(),
                     challenge: req.body.challenge,
                     error: error.message
@@ -436,6 +444,7 @@ if (app.get('env') === 'development') {
     app.use(function(err, req, res) {
         res.status(err.status || 500);
         res.render('error', {
+            baseUrl: baseUrl,
             message: err.message,
             error: err
         });
@@ -447,6 +456,7 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res) {
     res.status(err.status || 500);
     res.render('error', {
+        baseUrl: baseUrl,
         message: err.message,
         error: {}
     });

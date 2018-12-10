@@ -9,12 +9,11 @@ block content
         if client.logo_uri
             img(src=client.logo_uri)
 
-        p
-            | Hi ${user}, application <strong>${client.client_name || client.id}</strong> wants access resources on your behalf and to:
+        p= 'Hi ' + user + ', the application ' + (client.client_name || client.id) + ' wants access resources on your behalf and to:'
 
         each scope in requested_scope
             input(type="checkbox", id=scope, value=scope, name="grant_scope")
-            label(for=scope) ${scope}
+            label(for=scope)= scope
             br
 
         p
