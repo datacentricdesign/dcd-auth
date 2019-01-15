@@ -11,7 +11,7 @@
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "csurf": "^1.9.0",
-    "dcd-model": "0.0.1",
+    "dcd-model": "0.0.2",
     "debug": "^4.1.1",
     "express": "^4.16.4",
     "morgan": "^1.9.1",
