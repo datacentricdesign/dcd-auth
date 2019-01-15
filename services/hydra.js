@@ -17,7 +17,12 @@ const hydraUrl = process.env.HYDRA_ADMIN_URL;
  */
 function get(flow, challenge) {
   return fetch(uj(hydraUrl, '/oauth2/auth/requests/'
-      + flow + '/' + challenge))
+      + flow + '/' + challenge),
+      {
+          headers: {
+              'X-Forwarded-Proto': 'https'
+          }
+      })
     .then(function (res) {
       if (res.status < 200 || res.status > 302) {
         // This will handle any errors that aren't network related
