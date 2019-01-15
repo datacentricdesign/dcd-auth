@@ -51,7 +51,10 @@ function put(flow, action, challenge, body) {
     {
       method: 'PUT',
       body: JSON.stringify(body),
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+          'Content-Type': 'application/json',
+          'X-Forwarded-Proto': 'https'
+      }
     }
   )
     .then(function (res) {
