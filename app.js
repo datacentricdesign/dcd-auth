@@ -366,7 +366,7 @@ app.post(baseUrl + '/signup', csrfProtection, function(req, res, next) {
             });
     }).catch((error) => {
         console.log(error);
-        res.redirect('/error');
+        res.redirect(baseUrl + '/error');
     });
 });
 
