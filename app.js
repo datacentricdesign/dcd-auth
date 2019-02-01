@@ -153,7 +153,7 @@ app.post(baseUrl + '/consent', csrfProtection, function(req, res, next) {
             // access_token: { foo: 'bar' },
 
             // This data will be available in the ID token.
-            // id_token: buildIDToken(grant_scope),
+            id_token: buildIDToken(grant_scope),
 
         },
 
