@@ -133,6 +133,10 @@ app.post(baseUrl + '/consent', csrfProtection, function(req, res, next) {
             });
     }
 
+    console.log('## post consent, subject:');
+    console.log(req.subject);
+    console.log('##');
+
     let grant_scope = req.body.grant_scope;
     if (!Array.isArray(grant_scope)) {
         grant_scope = [grant_scope];
@@ -153,7 +157,7 @@ app.post(baseUrl + '/consent', csrfProtection, function(req, res, next) {
             // access_token: { foo: 'bar' },
 
             // This data will be available in the ID token.
-            id_token: buildIDToken(grant_scope),
+            id_token: buildIDToken(grant_scope, req.subject),
 
         },
 
@@ -176,6 +180,13 @@ app.post(baseUrl + '/consent', csrfProtection, function(req, res, next) {
             next(error);
         });
 });
+
+function getPersonDetails(subject) {
+    const url = process.env.API_URL + '/persons/' + subject;
+    return auth.refresh().then(() => {
+        return auth.authorisedRequest('GET', url);
+    });
+}
 
 function buildIDToken(grant_scope, subject) {
     const username = subject.replace('dcd:persons:', '');
@@ -265,17 +276,17 @@ app.post(baseUrl + '/signin', csrfProtection, function(req, res, next) {
     const challenge = req.body.challenge;
 
     const url = process.env.API_URL + '/persons/'
-        + req.body.username + '/check';
+        + req.body.email + '/check';
     const body = {
         password: req.body.password
     };
-    auth.refresh().then( () => {
+    auth.refresh().then(() => {
         auth.authorisedRequest('POST', url, body)
             .then((result) => {
                 // Tell hydra to login this user
                 console.log(result);
                 if (result.person !== undefined && result.person.valid) {
-                    req.subject = req.body.username;
+                    req.subject = req.body.email;
                     login(req, res, next);
                 } else {
                     // Looks like the user provided invalid credentials,
@@ -284,7 +295,7 @@ app.post(baseUrl + '/signin', csrfProtection, function(req, res, next) {
                         baseUrl: baseUrl,
                         csrfToken: req.csrfToken(),
                         challenge: challenge,
-                        error: 'The username / password combination is not correct'
+                        error: 'The email / password combination is not correct'
                     });
                 }
             }).catch((error) => {
@@ -347,10 +358,11 @@ app.post(baseUrl + '/signup', csrfProtection, function(req, res, next) {
 
     const url = process.env.API_URL + '/persons';
     const body = {
-        name: req.body.username,
+        id: req.body.email,
+        name: req.body.name,
         password: req.body.password
     };
-    auth.refresh().then( () => {
+    auth.refresh().then(() => {
         auth.authorisedRequest('POST', url, body)
             .then((result) => {
                 req.subject = result.personId;
