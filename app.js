@@ -216,7 +216,7 @@ function buildIDToken(grant_scope, subject) {
     // the user's email address. (optional)
     if (grant_scope.indexOf('email') >= 0) {
         idToken.email = username;
-        idToken.email_verified = false;
+        idToken.email_verified = true;
     }
 
     if (grant_scope.indexOf('phone') >= 0) {
