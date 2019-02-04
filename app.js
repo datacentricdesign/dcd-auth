@@ -29,6 +29,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
+app.use(express.cookieParser('S3CRE7'));
+app.use(express.session());
+app.use(app.router);
+
 app.use(baseUrl, express.static(path.join(__dirname, 'public'), {
     etag: false,
     maxAge: 100,
@@ -134,7 +138,7 @@ app.post(baseUrl + '/consent', csrfProtection, function(req, res, next) {
     }
 
     console.log('## post consent, subject:');
-    console.log(res);
+    console.log(req.session);
     console.log('##');
 
     let grant_scope = req.body.grant_scope;
@@ -189,6 +193,7 @@ function getPersonDetails(subject) {
 }
 
 function buildIDToken(grant_scope, subject) {
+    console.log('build id token: ' + subject);
     const username = subject.replace('dcd:persons:', '');
     const idToken = {};
     // This is the openid 'profile' scope which should include
@@ -413,6 +418,7 @@ function login(req, res, next) {
         // acr: '0',
     })
         .then(function(response) {
+            req.session.subject = req.subject;
             // All we need to do now is to redirect the
             // user back to hydra!
             res.redirect(response.redirect_to);
