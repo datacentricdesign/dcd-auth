@@ -203,7 +203,7 @@ function buildIDToken(grant_scope, subject) {
     const idToken = {};
     // This is the openid 'profile' scope which should include
     // some user profile data. (optional)
-    if (grant_scope.indexOf('profile') >= 0) {
+    if (grant_scope.indexOf('profile') > 0) {
         idToken.id = username;
         idToken.sub = username;
         idToken.name = username;
@@ -214,15 +214,16 @@ function buildIDToken(grant_scope, subject) {
 
     // This is to fulfill the openid 'email' scope which returns
     // the user's email address. (optional)
-    if (grant_scope.indexOf('email') >= 0) {
+    if (grant_scope.indexOf('email') > 0) {
         idToken.email = username;
         idToken.email_verified = true;
     }
 
-    if (grant_scope.indexOf('phone') >= 0) {
+    if (grant_scope.indexOf('phone') > 0) {
         idToken.phone_number = '';
         idToken.phone_verified = false;
     }
+    return idToken;
 }
 
 
