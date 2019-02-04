@@ -162,7 +162,7 @@ app.post(baseUrl + '/consent', csrfProtection, function(req, res, next) {
             // access_token: { foo: 'bar' },
 
             // This data will be available in the ID token.
-            // id_token: buildIDToken(grant_scope, req.session.subject),
+            id_token: buildIDToken(grant_scope, req.session.subject),
 
         },
 
@@ -176,12 +176,16 @@ app.post(baseUrl + '/consent', csrfProtection, function(req, res, next) {
         remember_for: 3600,
     })
         .then(function(response) {
+            console.log('consent valid response:');
+            console.log(response);
             // All we need to do now is to redirect the user back to hydra!
             res.redirect(response.redirect_to);
         })
         // This will handle any error that happens
         // when making HTTP calls to hydra
         .catch(function(error) {
+            console.log('consent valid error:');
+            console.log(error);
             next(error);
         });
 });
