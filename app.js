@@ -76,8 +76,8 @@ app.get(baseUrl + '/consent', csrfProtection, function(req, res, next) {
                         // access_token: { foo: 'bar' },
 
                         // This data will be available in the ID token.
-                        // id_token: buildIDToken(
-                        //     response.requested_scope, response.subject),
+                        id_token: buildIDToken(
+                            response.requested_scope, response.subject)
                     }
                 }).then(function(response) {
                     // All we need to do now is to redirect the
@@ -95,7 +95,7 @@ app.get(baseUrl + '/consent', csrfProtection, function(req, res, next) {
                 // check out the API docs to find what these values mean
                 // and what additional data you have available.
                 requested_scope: response.requested_scope,
-                user: response.subject,
+                user: response.subject.replace('dcd:persons:',''),
                 client: response.client,
             });
         })
@@ -134,7 +134,7 @@ app.post(baseUrl + '/consent', csrfProtection, function(req, res, next) {
     }
 
     console.log('## post consent, subject:');
-    console.log(req.session);
+    console.log(res);
     console.log('##');
 
     let grant_scope = req.body.grant_scope;
