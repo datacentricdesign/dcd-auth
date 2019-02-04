@@ -142,10 +142,6 @@ app.post(baseUrl + '/consent', csrfProtection, function(req, res, next) {
             });
     }
 
-    console.log('## post consent, subject:');
-    console.log(req.session);
-    console.log('##');
-
     let grant_scope = req.body.grant_scope;
     if (!Array.isArray(grant_scope)) {
         grant_scope = [grant_scope];
@@ -166,7 +162,7 @@ app.post(baseUrl + '/consent', csrfProtection, function(req, res, next) {
             // access_token: { foo: 'bar' },
 
             // This data will be available in the ID token.
-            id_token: buildIDToken(grant_scope, req.subject),
+            id_token: buildIDToken(grant_scope, req.session.subject),
 
         },
 
@@ -215,7 +211,7 @@ function buildIDToken(grant_scope, subject) {
     // This is to fulfill the openid 'email' scope which returns
     // the user's email address. (optional)
     if (grant_scope.indexOf('email') >= 0) {
-        idToken.email = username + '@tudelft.nl';
+        idToken.email = username;
         idToken.email_verified = false;
     }
 
