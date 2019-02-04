@@ -134,7 +134,7 @@ app.post(baseUrl + '/consent', csrfProtection, function(req, res, next) {
     }
 
     console.log('## post consent, subject:');
-    console.log(req.subject);
+    console.log(req);
     console.log('##');
 
     let grant_scope = req.body.grant_scope;
