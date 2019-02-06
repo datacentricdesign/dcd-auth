@@ -85,8 +85,8 @@ app.get(baseUrl + '/consent', csrfProtection, function(req, res, next) {
                         // access_token: { foo: 'bar' },
 
                         // This data will be available in the ID token.
-                        id_token: buildIDToken(
-                            response.requested_scope, response.subject)
+                        // id_token: buildIDToken(
+                        //     response.requested_scope, response.subject)
                     }
                 }).then(function(response) {
                     // All we need to do now is to redirect the
@@ -162,8 +162,7 @@ app.post(baseUrl + '/consent', csrfProtection, function(req, res, next) {
             // access_token: { foo: 'bar' },
 
             // This data will be available in the ID token.
-            id_token: buildIDToken(grant_scope, req.session.subject),
-
+            // id_token: buildIDToken(grant_scope, req.session.subject)
         },
 
         // This tells hydra to remember this consent request and allow the
