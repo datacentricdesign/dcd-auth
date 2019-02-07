@@ -206,6 +206,7 @@ function buildIDToken(grant_scope, subject) {
         idToken.id = username;
         idToken.sub = username;
         idToken.name = username;
+        idToken.teams = '1';
         idToken.given_name = username;
         idToken.family_name = '';
         idToken.profile = '';
