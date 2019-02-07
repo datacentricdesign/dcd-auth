@@ -31,12 +31,12 @@ app.use(cookieParser());
 
 const session = require('express-session');
 app.set('trust proxy', 1); // trust first proxy
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
-}));
+// app.use(session({
+//     secret: 'keyboard cat',
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { secure: true }
+// }));
 
 app.use(baseUrl, express.static(path.join(__dirname, 'public'), {
     etag: false,
