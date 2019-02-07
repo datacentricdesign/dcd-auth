@@ -35,7 +35,7 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { secure: false }
 }));
 
 app.use(baseUrl, express.static(path.join(__dirname, 'public'), {
