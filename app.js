@@ -29,14 +29,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
-const session = require('express-session');
-app.set('trust proxy', 1); // trust first proxy
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
-}));
+// const session = require('express-session');
+// app.set('trust proxy', 1); // trust first proxy
+// app.use(session({
+//     secret: 'keyboard cat',
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { secure: true }
+// }));
 
 app.use(baseUrl, express.static(path.join(__dirname, 'public'), {
     etag: false,
@@ -85,8 +85,8 @@ app.get(baseUrl + '/consent', csrfProtection, function(req, res, next) {
                         // access_token: { foo: 'bar' },
 
                         // This data will be available in the ID token.
-                        id_token: buildIDToken(
-                            response.requested_scope, response.subject)
+                        // id_token: buildIDToken(
+                        //     response.requested_scope, response.subject)
                     }
                 }).then(function(response) {
                     // All we need to do now is to redirect the
@@ -162,7 +162,7 @@ app.post(baseUrl + '/consent', csrfProtection, function(req, res, next) {
             // access_token: { foo: 'bar' },
 
             // This data will be available in the ID token.
-            id_token: buildIDToken(grant_scope, req.session.subject)
+            // id_token: buildIDToken(grant_scope, req.session.subject)
         },
 
         // This tells hydra to remember this consent request and allow the
@@ -423,7 +423,7 @@ function login(req, res, next) {
         // acr: '0',
     })
         .then(function(response) {
-            req.session.subject = req.subject;
+            // req.session.subject = req.subject;
             // All we need to do now is to redirect the
             // user back to hydra!
             res.redirect(response.redirect_to);
