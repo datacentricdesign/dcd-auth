@@ -1,26 +1,23 @@
 extends layout
 
 block content
-    h1 Data-Centric Design HUB
     if error
         p= error
-    p Please sign in with your Data-Centric Design Hub credentials.
     form(action="/auth/signin", method="POST" class="row")
         input(type="hidden", name="_csrf", value=csrfToken)
         input(type="hidden", name="challenge", value=challenge)
         div(class="col50")
             fieldset
                 h3 Sign in
-                    label
-                        input(type="email", name="email")
-                        | Email
-                    label
-                        input(type="password", name="password")
-                        | Password
-                    label
-                        input(type="checkbox", id="remember", name="remember", value="1")
-                        | Remember me
+                p Please sign in with your Data-Centric Design Hub credentials.
+                label(for="email") Email
+                    input(id="email", type="email", name="email")
+                label(for="password") Password
+                    input(id="password", type="password", name="password")
+                label(for="remember")
+                    input(id="remember", type="checkbox", name="remember", value="1")
+                input(type="submit", id="submit", name="Submit", value="1")
 
-            a(href="/auth/signup?_csrf=" + csrfToken + " &login_challenge=" + challenge).
-                Not yet an account? Sign up
+                a(href="/auth/signup?_csrf=" + csrfToken + " &login_challenge=" + challenge).
+                    Not yet an account? Sign up
 
