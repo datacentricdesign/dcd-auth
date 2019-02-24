@@ -95,10 +95,7 @@ header.amber .btn span span { background-color: #ffc107; }
 }
 
 .btn {
-    position: relative;
-
-    display: block;
-    margin: 30px auto;
+    margin: 30px 30px;
     padding: 0;
 
     overflow: hidden;
