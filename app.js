@@ -115,7 +115,7 @@ app.get(baseUrl + '/consent', csrfProtection, function(req, res, next) {
                 // We have a bunch of data available from the response,
                 // check out the API docs to find what these values mean
                 // and what additional data you have available.
-                requested_scope: scopes,
+                requested_scope: detailedScopes,
                 user: response.subject.replace('dcd:persons:',''),
                 client: response.client,
             });
