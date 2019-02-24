@@ -12,11 +12,14 @@ block content
             fieldset
                 h3 Sign in
                     label
-                        input(type="email", name="email") Email
+                        input(type="email", name="email")
+                            | Email
                     label
-                        input(type="password", name="password") Password
+                        input(type="password", name="password")
+                            | Password
                     label
-                        input(type="checkbox", id="remember", name="remember", value="1") Remember me
+                        input(type="checkbox", id="remember", name="remember", value="1")
+                            | Remember me
 
             a(href="/auth/signup?_csrf=" + csrfToken + " &login_challenge=" + challenge).
                 Not yet an account? Sign up
