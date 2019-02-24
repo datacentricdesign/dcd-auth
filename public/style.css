@@ -95,8 +95,9 @@ header.amber .btn span span { background-color: #ffc107; }
 }
 
 .btn {
+    display: block;
     margin: 30px 30px;
-    padding: 12px 24px;
+    padding: 0;
 
     overflow: hidden;
 
