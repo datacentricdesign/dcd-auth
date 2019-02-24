@@ -10,10 +10,17 @@ block content
             fieldset
                 h3 Sign in
                 p Please sign in with your Data-Centric Design Hub credentials.
-                label(for="email") Email
-                    input(id="email", type="email", name="email")
-                label(for="password") Password
-                    input(id="password", type="password", name="password")
+                table(style="")
+                    tr
+                        td
+                            | Email:
+                        td
+                            input(type="email", name="email")
+                    tr
+                        td
+                            | Password:
+                        td
+                            input(type="password", name="password")
                 label(for="remember") Remember me
                     input(id="remember", type="checkbox", name="remember", value="1", class="box")
                 input(type="submit", id="submit", name="submit", value="Sign in")
