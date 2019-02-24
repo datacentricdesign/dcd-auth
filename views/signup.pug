@@ -1,9 +1,10 @@
 extends layout
 
 block content
-    h1 Sign up to Data-Centric Design Hub.
+    h1 Data-Centric Design Hub
     if error
         p= error
+    p Please type in your email address, name and password to sign up.
     form(action="/auth/signup", method="POST")
         input(type="hidden", name="_csrf", value=csrfToken)
         input(type="hidden", name="challenge", value=challenge)
