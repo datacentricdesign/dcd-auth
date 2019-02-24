@@ -98,6 +98,7 @@ header.amber .btn span span { background-color: #ffc107; }
     display: block;
     margin: 30px 30px;
     padding: 0;
+    width: 100px;
 
     overflow: hidden;
 
@@ -118,11 +119,6 @@ header.amber .btn span span { background-color: #ffc107; }
 
 .btn > * {
     position: relative;
-}
-
-.btn span {
-    display: block;
-    padding: 12px 24px;
 }
 
 .btn:before {
