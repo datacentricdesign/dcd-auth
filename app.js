@@ -5,6 +5,8 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
+const fs = require('fs');
+
 const app = express();
 
 const baseUrl = process.env.BASE_URL || '/auth';
@@ -33,6 +35,9 @@ app.use(baseUrl, express.static(path.join(__dirname, 'public'), {
     etag: false,
     maxAge: 100,
 }));
+
+// Read scopes
+const scopeLib = JSON.parse(fs.readFileSync('scopes.json', 'utf8'));
 
 app.get(baseUrl + '/', function(req, res) {
     res.render('index');
@@ -86,6 +91,22 @@ app.get(baseUrl + '/consent', csrfProtection, function(req, res, next) {
                 });
             }
 
+            const scopes = response.requested_scope;
+            const detailedScopes = [];
+            for (let key in scopes) {
+                if (scopes.hasOwnProperty(key)) {
+                    if (scopeLib.hasOwnProperty(scopes[key])) {
+                        detailedScopes.push(scopeLib[scopes[key]]);
+                    } else {
+                        detailedScopes.push({
+                            id: scopes[key],
+                            name: scopes[key],
+                            desc: ''
+                        });
+                    }
+                }
+            }
+
             // If consent can't be skipped we MUST show the consent UI.
             res.render('consent', {
                 baseUrl: baseUrl,
@@ -94,7 +115,7 @@ app.get(baseUrl + '/consent', csrfProtection, function(req, res, next) {
                 // We have a bunch of data available from the response,
                 // check out the API docs to find what these values mean
                 // and what additional data you have available.
-                requested_scope: response.requested_scope,
+                requested_scope: scopes,
                 user: response.subject.replace('dcd:persons:',''),
                 client: response.client,
             });

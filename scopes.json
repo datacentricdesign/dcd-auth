@@ -1,0 +1,47 @@
+{
+  "dcd:public": {
+    "id": "dcd:public",
+    "name": "Access Public Data",
+    "desc": "Access anything public on the DCD Hub."
+  },
+  "dcd:things": {
+    "id": "dcd:things",
+    "name": "Access Things",
+    "desc": "Access the details of Things I am allowed to access."
+  },
+  "dcd:persons": {
+    "id": "dcd:persons",
+    "name": "Access Persons",
+    "desc": "Access the details of Persons I am allowed to access."
+  },
+  "openid": {
+    "id": "openid",
+    "name": "OpenID",
+    "desc": "Authenticate via your ioSense account."
+  },
+  "offline": {
+    "id": "offline",
+    "name": "Offline",
+    "desc": "Renew ioSense access automatically (i.e. keep you signed in)."
+  },
+  "profile": {
+    "id": "profile",
+    "name": "Profile",
+    "desc": "Access your profile information and preferences. If available: your name, picture or avatar, website, gender, date of birth, timezone and locale preferences."
+  },
+  "email": {
+    "id": "email",
+    "name": "Email",
+    "desc": "Access your email and its verification status."
+  },
+  "phone": {
+    "id": "phone",
+    "name": "Phone",
+    "desc": "Access your phone number and its verification status."
+  },
+  "address": {
+    "id": "address",
+    "name": "Address",
+    "desc": "Access your address information."
+  }
+}
