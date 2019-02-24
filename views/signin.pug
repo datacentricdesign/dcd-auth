@@ -11,12 +11,12 @@ block content
                 h3 Sign in
                 p Please sign in with your Data-Centric Design Hub credentials.
                 label(for="email") Email
-                    input(id="email", type="email", name="email")
+                    input(id="email", type="email", name="email", class="box")
                 label(for="password") Password
-                    input(id="password", type="password", name="password")
-                label(for="remember")
+                    input(id="password", type="password", name="password", class="box")
+                label(for="remember") Remember me
                     input(id="remember", type="checkbox", name="remember", value="1")
-                input(type="submit", id="submit", name="Submit", value="1")
+                input(type="submit", id="submit", name="submit", value="Sign in")
 
                 a(href="/auth/signup?_csrf=" + csrfToken + " &login_challenge=" + challenge).
                     Not yet an account? Sign up
