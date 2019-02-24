@@ -23,7 +23,6 @@ p.arrows .btn { margin: 0.2em; }
 body.small p.arrows { margin-right: -0.8em; }
 body.large p.arrows { margin-right: 0.5em; }
 body.xl p.arrows { margin-right: 3.1em; margin-top: 2.4em; }
-label { display: block; line-height: 2em; }
 input {width: 15em; height: 2em;}
 label .box { width: 1.3em; height: 1.3em; margin: 0 0.5em 0 0; vertical-align: middle; }
 fieldset { border: 0; margin: 0 0 2em 0; padding: 1em; background-color: #f7f7f7; box-shadow: 0 0 5px rgba(0,0,0,0.2); overflow: hidden; border-radius: 0.3em; }
