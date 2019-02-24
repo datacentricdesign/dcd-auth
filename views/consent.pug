@@ -17,8 +17,10 @@ block content
                 p= 'Hi ' + user + ', the application ' + (client.client_name || client.id) + ' wants access resources on your behalf and to:'
 
                 each scope in requested_scope
-                    input(type="checkbox", id=scope, value=scope.id, name="grant_scope", checked="checked")
-                    label(for=scope)= scope.name + ": " + scope.desc
+                    input(type="checkbox", id=scope, value=scope.id, name="grant_scope", checked="checked", disabled="true")
+                    label(for=scope)= scope.name
+                    br
+                    span(class="description")= scope.desc
                     br
 
                 p
