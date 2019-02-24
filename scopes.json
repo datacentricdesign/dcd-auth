@@ -17,12 +17,12 @@
   "openid": {
     "id": "openid",
     "name": "OpenID",
-    "desc": "Authenticate via your ioSense account."
+    "desc": "Authenticate via your DCD Hub account."
   },
   "offline": {
     "id": "offline",
     "name": "Offline",
-    "desc": "Renew ioSense access automatically (i.e. keep you signed in)."
+    "desc": "Renew DCD Hub access automatically (i.e. keep you signed in)."
   },
   "profile": {
     "id": "profile",
