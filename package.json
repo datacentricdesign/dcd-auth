@@ -8,18 +8,18 @@
     "test": "NODE_ENV=development LOG_LEVEL=DEBUG PORT=8888 MODEL_HOST=10.0.1.16 NODE_TLS_REJECT_UNAUTHORIZED=0 CRYPTO_KEY=cryptoKeyToChange API_URL=http://10.0.1.16:4478/api KETO_URL=http://10.0.1.16:4466 HYDRA_ADMIN_URL=http://10.0.1.16:4445 OAUTH2_TOKEN_URL=http://10.0.1.16:4444/oauth2/token OAUTH2_CLIENT_ID=dcd-auth OAUTH2_CLIENT_SECRET=auth-secret node index.js"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "cookie-parser": "^1.4.4",
-    "csurf": "^1.9.0",
-    "dcd-model": "^0.0.47",
-    "debug": "^4.1.1",
-    "express": "^4.16.4",
-    "express-session": "^1.15.6",
-    "morgan": "^1.9.1",
-    "node-fetch": "^2.3.0",
-    "pug": "^2.0.3",
-    "serve-favicon": "^2.5.0",
-    "url-join": "^4.0.0"
+    "body-parser": "1.19.0",
+    "cookie-parser": "1.4.4",
+    "csurf": "1.10.0",
+    "dcd-model": "0.0.135",
+    "debug": "4.1.1",
+    "express": "4.17.1",
+    "express-session": "1.16.2",
+    "morgan": "1.9.1",
+    "node-fetch": "2.6.0",
+    "pug": "2.0.4",
+    "serve-favicon": "2.5.0",
+    "url-join": "4.0.1"
   },
   "repository": {
     "type": "git",
