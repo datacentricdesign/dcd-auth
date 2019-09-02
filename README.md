@@ -1,4 +1,9 @@
-# dcd-auth
+# DCD App - Identity Provider
+
+
+![GitHub package.json version](https://img.shields.io/github/package-json/v/datacentricdesign/dcd-app-identity-provider)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/datacentricdesign/dcd-app-identity-provider)
+![Docker Build Status](https://img.shields.io/docker/build/datacentricdesign/dcd-app-identity-provider)
 
 An OAuth web portal to Authenticate users via the Data-Centric Design Hub.
 
