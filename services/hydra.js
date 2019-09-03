@@ -17,7 +17,7 @@ const hydraUrl = process.env.HYDRA_ADMIN_URL;
  */
 function get(flow, challenge) {
   return fetch(uj(hydraUrl, '/oauth2/auth/requests/'
-      + flow + '/' + challenge),
+      + flow + '?challenge=' + challenge),
       {
           headers: {
               'X-Forwarded-Proto': 'https'
@@ -52,7 +52,7 @@ function put(flow, action, challenge, body) {
   return fetch(
     // Joins process.env.HYDRA_URL with the request path
     uj(hydraUrl, '/oauth2/auth/requests/'
-        + flow + '/' + challenge + '/' + action),
+        + flow + '/' + action + '?challenge' + challenge),
     {
       method: 'PUT',
       body: JSON.stringify(body),
