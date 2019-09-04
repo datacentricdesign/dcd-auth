@@ -52,7 +52,7 @@ function put(flow, action, challenge, body) {
   return fetch(
     // Joins process.env.HYDRA_URL with the request path
     uj(hydraUrl, '/oauth2/auth/requests/'
-        + flow + '/' + action + '?challenge' + challenge),
+        + flow + '/' + action + '?challenge=' + challenge),
     {
       method: 'PUT',
       body: JSON.stringify(body),
