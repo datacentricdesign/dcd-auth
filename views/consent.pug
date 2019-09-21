@@ -8,8 +8,8 @@ block content
 
         div(class="col50")
             fieldset
-                h3= "Consent access for " + (client.client_name || client.id)
-                p= (client.client_name || client.id) + " requests the following access to your data!"
+                h3= "Consent access for " + (client.client_name || client.client_id)
+                p= (client.client_name || client.client_id) + " requests the following access to your data!"
 
                 if client.logo_uri
                     img(src=client.logo_uri)
