@@ -8,8 +8,8 @@ const firstPartyApps = (process.env.FIRST_PARTY_APPS || "").split(",");
 
 const API = require("./API");
 const url = require("url");
-const hydra = require("./services/hydra");
-const util = require("./services/util");
+const hydra = require("../services/hydra");
+const util = require("../services/util");
 
 class ConsentAPI extends API {
   init() {
