@@ -21,7 +21,7 @@ class SignUpAPI extends API {
       hydra
         .getLoginRequest(challenge)
         // This will be called if the HTTP request was successful
-        .then(function(response) {
+        .then(response => {
           // If hydra was already able to authenticate the user,
           // skip will be true and we do not need to re-authenticate
           // the user.
@@ -43,11 +43,7 @@ class SignUpAPI extends API {
 
           // If authentication can't be skipped
           // we MUST show the sign up UI.
-          res.render("signup", {
-            baseUrl: this.baseUrl,
-            csrfToken: req.csrfToken(),
-            challenge: challenge
-          });
+          this.renderSignUp(req, res, challenge);
         })
         // This will handle any error that happens
         // when making HTTP calls to hydra
@@ -74,16 +70,16 @@ class SignUpAPI extends API {
           util.login(req, res, next);
         })
         .catch(error => {
-          this.renderSignUp(req, res, error);
+          this.renderSignUp(req, res, req.body.challenge, error);
         });
     });
   }
 
-  renderSignUp(req, res, error) {
+  renderSignUp(req, res, challenge, error) {
     res.render("signup", {
       baseUrl: this.baseUrl,
       csrfToken: req.csrfToken(),
-      challenge: req.body.challenge,
+      challenge: challenge,
       error: error
     });
   }

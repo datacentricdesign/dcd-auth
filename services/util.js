@@ -26,7 +26,7 @@ function util(req, res, next) {
       // of 0 indicates the lowest authorization level.
       // acr: '0',
     })
-    .then(function(response) {
+    .then(response => {
       // req.session.subject = req.subject;
       // All we need to do now is to redirect the
       // user back to hydra!

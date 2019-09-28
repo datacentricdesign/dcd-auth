@@ -79,7 +79,7 @@ class SignInAPI extends API {
                   message: "The email / password combination is not correct"
                 }
               };
-              this.renderSignIn(req, res, jsonError);
+              this.renderSignIn(req, res, req.body.challenge, jsonError);
             }
           })
           .catch(error => next(error));
@@ -91,7 +91,7 @@ class SignInAPI extends API {
     res.render("signin", {
       baseUrl: this.baseUrl,
       csrfToken: req.csrfToken(),
-      challenge: req.body.challenge,
+      challenge: challenge,
       error: error
     });
   }
