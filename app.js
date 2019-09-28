@@ -304,6 +304,8 @@ app.post(baseUrl + '/signin', csrfProtection, function(req, res, next) {
         password: req.body.password
     };
     auth.refresh().then(() => {
+        console.log("bearer token:");
+        console.log(auth.getBearer());
         auth.authorisedRequest('POST', url, body)
             .then((result) => {
                 // Tell hydra to login this user
