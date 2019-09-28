@@ -2,7 +2,13 @@ extends layout
 
 block content
     if error
-        p= error
+        if error.message
+            p= error.message
+        if error.hint
+            p = error.hint
+        if error.requirements
+            p = error.hint
+
     form(action="/auth/signin", method="POST" class="row")
         input(type="hidden", name="_csrf", value=csrfToken)
         input(type="hidden", name="challenge", value=challenge)

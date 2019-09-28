@@ -1,10 +1,12 @@
-const fetch = require('node-fetch');
-const uj = require('url-join');
+"use strict";
+
+const fetch = require("node-fetch");
+const uj = require("url-join");
 
 // Setting the logs
-const log4js = require('log4js');
-const logger = log4js.getLogger('[dcd-auth:hydra]');
-logger.level = process.env.LOG_LEVEL || 'INFO';
+const log4js = require("log4js");
+const logger = log4js.getLogger("[dcd-auth:hydra]");
+logger.level = process.env.LOG_LEVEL || "INFO";
 
 const hydraUrl = process.env.HYDRA_ADMIN_URL;
 
@@ -16,25 +18,25 @@ const hydraUrl = process.env.HYDRA_ADMIN_URL;
  * @return {*}
  */
 function get(flow, challenge) {
-  return fetch(uj(hydraUrl, '/oauth2/auth/requests/'
-      + flow + '?challenge=' + challenge),
-      {
-          headers: {
-              'X-Forwarded-Proto': 'https'
-          }
-      })
-    .then(function (res) {
-      if (res.status < 200 || res.status > 302) {
-        // This will handle any errors that aren't network related
-          // (network related errors are handled automatically)
-        return res.json().then(function (body) {
-          logger.error('An error occurred while making a HTTP request: ', body);
-          return Promise.reject(new Error(body.error.message));
-        });
+  return fetch(
+    uj(hydraUrl, "/oauth2/auth/requests/" + flow + "?challenge=" + challenge),
+    {
+      headers: {
+        "X-Forwarded-Proto": "https"
       }
+    }
+  ).then(function(res) {
+    if (res.status < 200 || res.status > 302) {
+      // This will handle any errors that aren't network related
+      // (network related errors are handled automatically)
+      return res.json().then(function(body) {
+        logger.error("An error occurred while making a HTTP request: ", body);
+        return Promise.reject(new Error(body.error.message));
+      });
+    }
 
-      return res.json();
-    });
+    return res.json();
+  });
 }
 
 //
@@ -51,55 +53,56 @@ function get(flow, challenge) {
 function put(flow, action, challenge, body) {
   return fetch(
     // Joins process.env.HYDRA_URL with the request path
-    uj(hydraUrl, '/oauth2/auth/requests/'
-        + flow + '/' + action + '?challenge=' + challenge),
+    uj(
+      hydraUrl,
+      "/oauth2/auth/requests/" + flow + "/" + action + "?challenge=" + challenge
+    ),
     {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(body),
       headers: {
-          'Content-Type': 'application/json',
-          'X-Forwarded-Proto': 'https'
+        "Content-Type": "application/json",
+        "X-Forwarded-Proto": "https"
       }
     }
-  )
-    .then(function (res) {
-      if (res.status < 200 || res.status > 302) {
-        // This will handle any errors that aren't network
-          // related (network related errors are handled automatically)
-        return res.json().then(function (body) {
-          logger.error('An error occurred while making a HTTP request: ', body);
-          return Promise.reject(new Error(body.error.message));
-        });
-      }
+  ).then(function(res) {
+    if (res.status < 200 || res.status > 302) {
+      // This will handle any errors that aren't network
+      // related (network related errors are handled automatically)
+      return res.json().then(function(body) {
+        logger.error("An error occurred while making a HTTP request: ", body);
+        return Promise.reject(new Error(body.error.message));
+      });
+    }
 
-      return res.json();
-    });
+    return res.json();
+  });
 }
 
 const hydra = {
   // Fetches information on a login request.
-  getLoginRequest: function (challenge) {
-    return get('login', challenge);
+  getLoginRequest: function(challenge) {
+    return get("login", challenge);
   },
   // Accepts a login request.
-  acceptLoginRequest: function (challenge, body) {
-    return put('login', 'accept', challenge, body);
+  acceptLoginRequest: function(challenge, body) {
+    return put("login", "accept", challenge, body);
   },
   // Rejects a login request.
-  rejectLoginRequest: function (challenge) {
-    return put('login', 'reject', challenge);
+  rejectLoginRequest: function(challenge) {
+    return put("login", "reject", challenge);
   },
   // Fetches information on a consent request.
-  getConsentRequest: function (challenge) {
-    return get('consent', challenge);
+  getConsentRequest: function(challenge) {
+    return get("consent", challenge);
   },
   // Accepts a consent request.
-  acceptConsentRequest: function (challenge, body) {
-    return put('consent', 'accept', challenge, body);
+  acceptConsentRequest: function(challenge, body) {
+    return put("consent", "accept", challenge, body);
   },
   // Rejects a consent request.
-  rejectConsentRequest: function (challenge, body) {
-    return put('consent', 'reject', challenge, body);
+  rejectConsentRequest: function(challenge, body) {
+    return put("consent", "reject", challenge, body);
   }
 };
 

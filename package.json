@@ -10,15 +10,25 @@
     "body-parser": "1.19.0",
     "cookie-parser": "1.4.4",
     "csurf": "1.10.0",
-    "dcd-model": "0.0.150-grant-revoke",
+    "dcd-model": "0.0.154-grant-revoke",
     "debug": "4.1.1",
     "express": "4.17.1",
     "express-session": "1.16.2",
-    "morgan": "1.9.1",
+    "log4js": "5.1.0",
     "node-fetch": "2.6.0",
     "pug": "2.0.4",
     "serve-favicon": "2.5.0",
     "url-join": "4.0.1"
+  },
+  "devDependencies": {
+    "prettier": "1.18.2",
+    "eslint": "6.4.0",
+    "acorn": "7.1.0",
+    "babel-eslint": "10.0.3"
+  },
+  "optionalDependencies": {
+    "eslint-config-prettier": "6.3.0",
+    "eslint-plugin-prettier": "3.1.1"
   },
   "repository": {
     "type": "git",
