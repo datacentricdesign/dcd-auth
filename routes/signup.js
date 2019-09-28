@@ -74,13 +74,17 @@ class SignUpAPI extends API {
           util.login(req, res, next);
         })
         .catch(error => {
-          res.render("signup", {
-            baseUrl: this.baseUrl,
-            csrfToken: req.csrfToken(),
-            challenge: req.body.challenge,
-            error: error.message
-          });
+          this.renderSignUp(req, res, error);
         });
+    });
+  }
+
+  renderSignUp(req, res, error) {
+    res.render("signup", {
+      baseUrl: this.baseUrl,
+      csrfToken: req.csrfToken(),
+      challenge: req.body.challenge,
+      error: error
     });
   }
 }
