@@ -47,6 +47,10 @@ const SignUpAPI = require("./routes/signup");
 const signup = new SignUpAPI(auth);
 app.use(baseUrl + "/signup", signup.router);
 
+const SignOutAPI = require("./routes/signout");
+const signout = new SignOutAPI(auth);
+app.use(baseUrl + "/signout", signout.router);
+
 /**
  * Catch 404 and forward to error handler
  */

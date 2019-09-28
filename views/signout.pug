@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1 Do you wish to sign out?
+    if error
+        if error.message
+            p= error.message
+        if error.hint
+            p = error.hint
+        if error.requirements
+            p = error.hint
+
+    form(action="/logout", method="POST")
+        input(type="hidden", name="_csrf", value=csrfToken)
+        input(type="hidden", name="challenge", value=challenge)
+        input(type="submit", id="accept", value="Yes")
+        input(type="submit", id="reject", value="No")

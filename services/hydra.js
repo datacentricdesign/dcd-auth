@@ -103,6 +103,18 @@ const hydra = {
   // Rejects a consent request.
   rejectConsentRequest: function(challenge, body) {
     return put("consent", "reject", challenge, body);
+  },
+  // Fetches information on a logout request.
+  getLogoutRequest: function(challenge) {
+    return get("logout", challenge);
+  },
+  // Accepts a logout request.
+  acceptLogoutRequest: function(challenge) {
+    return put("logout", "accept", challenge, {});
+  },
+  // Reject a logout request.
+  rejectLogoutRequest: function(challenge) {
+    return put("logout", "reject", challenge, {});
   }
 };
 
