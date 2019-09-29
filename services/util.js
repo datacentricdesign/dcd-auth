@@ -8,7 +8,7 @@ function util(req, res, next) {
     .acceptLoginRequest(req.body.challenge, {
       // Subject is an alias for user ID. A subject can be a random string,
       // a UUID, an email address, ....
-      subject: "dcd:persons:" + req.subject,
+      subject: req.subject,
 
       // This tells hydra to remember the browser and automatically
       // authenticate the user in future requests. This will
