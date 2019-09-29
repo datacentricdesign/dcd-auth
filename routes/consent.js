@@ -49,6 +49,9 @@ class ConsentAPI extends API {
                 // are requested accidentally.
                 grant_scope: response.requested_scope,
 
+                grant_access_token_audience:
+                  response.requested_access_token_audience,
+
                 // The session allows us to set session data
                 // for id and access tokens
                 session: {

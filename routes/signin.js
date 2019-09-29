@@ -70,7 +70,11 @@ class SignInAPI extends API {
           .then(result => {
             // Tell hydra to login this user
             if (result.person !== undefined && result.person.valid) {
-              req.subject = req.body.email;
+              let subject = req.body.email;
+              if (!subject.startsWith("dcd:persons:")) {
+                subject = "dcd:persons:" + subject;
+              }
+              req.subject = subject;
               util.login(req, res, next);
             } else {
               // Invalid user credentials, show the ui again
