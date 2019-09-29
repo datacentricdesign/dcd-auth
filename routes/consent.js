@@ -27,7 +27,7 @@ class ConsentAPI extends API {
       hydra
         .getConsentRequest(challenge)
         // This will be called if the HTTP request was successful
-        .then(function(response) {
+        .then(response => {
           // If a user has granted this application the requested scope,
           // hydra will tell us to not show the UI.
           if (
@@ -61,7 +61,7 @@ class ConsentAPI extends API {
                   )
                 }
               })
-              .then(function(response) {
+              .then(response => {
                 // All we need to do now is to redirect the
                 // user back to hydra!
                 res.redirect(response.redirect_to);
