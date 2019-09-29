@@ -30,6 +30,7 @@ class ConsentAPI extends API {
         .then(response => {
           this.logger.debug(response);
           this.logger.debug(firstPartyApps);
+          this.logger.debug(response.requested_scope);
           // If a user has granted this application the requested scope,
           // hydra will tell us to not show the UI.
           if (
