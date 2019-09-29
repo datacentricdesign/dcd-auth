@@ -6,7 +6,7 @@ const hydra = require("../services/hydra");
 
 class SignOutAPI extends API {
   init() {
-    this.router.get("/", this.csrfProtection, function(req, res, next) {
+    this.router.get("/", this.csrfProtection, (req, res, next) => {
       // Parses the URL query
       const query = url.parse(req.url, true).query;
 
