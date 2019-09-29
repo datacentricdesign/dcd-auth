@@ -73,7 +73,7 @@ function buildIDToken(grant_scope, subject) {
   // some user profile data. (optional)
   if (grant_scope.indexOf("profile") > 0) {
     idToken.id = username;
-    idToken.sub = username;
+    idToken.sub = subject;
     idToken.name = username;
     idToken.teams = "1";
     idToken.given_name = username;
