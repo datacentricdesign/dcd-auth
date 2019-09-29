@@ -16,7 +16,7 @@ class ConsentAPI extends API {
     /**
      * Consent - display
      */
-    this.router.get("/", this.csrfProtection, function(req, res, next) {
+    this.router.get("/", this.csrfProtection, (req, res, next) => {
       // Parses the URL query
       const query = url.parse(req.url, true).query;
 
@@ -68,18 +68,15 @@ class ConsentAPI extends API {
               });
           }
 
-          const scopes = response.requested_scope;
-          const detailedScopes = buildDetailedScopes(scopes);
-
           // If consent can't be skipped we MUST show the consent UI.
-          res.render("consent", {
-            baseUrl: this.baseUrl,
-            csrfToken: req.csrfToken(),
-            challenge: challenge,
-            requested_scope: detailedScopes,
-            user: response.subject.replace("dcd:persons:", ""),
-            client: response.client
-          });
+          this.renderConsent(
+            req,
+            res,
+            challenge,
+            response.requested_scope,
+            response.subject,
+            response.client
+          );
         })
         // This will handle any error that happens
         // when making HTTP calls to hydra
@@ -155,6 +152,17 @@ class ConsentAPI extends API {
         // This will handle any error that happens
         // when making HTTP calls to hydra
         .catch(error => next(error));
+    });
+  }
+
+  renderConsent(req, res, challenge, scopes, subject, client) {
+    res.render("consent", {
+      baseUrl: this.baseUrl,
+      csrfToken: req.csrfToken(),
+      challenge: challenge,
+      requested_scope: buildDetailedScopes(scopes),
+      user: subject.replace("dcd:persons:", ""),
+      client: client
     });
   }
 }
