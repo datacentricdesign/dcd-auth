@@ -92,6 +92,7 @@ function buildIDToken(grant_scope, subject) {
     idToken.phone_number = "";
     idToken.phone_verified = false;
   }
+  console.log(idToken);
   return idToken;
 }
 
