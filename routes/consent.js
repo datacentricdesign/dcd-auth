@@ -117,7 +117,7 @@ class ConsentAPI extends API {
         );
       }
 
-      this.logger.debug(req.body);
+      this.logger.debug(req.query);
 
       let grant_scope = req.body.grant_scope;
       if (!Array.isArray(grant_scope)) {
