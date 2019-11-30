@@ -67,6 +67,7 @@ exports.getPersonDetails = getPersonDetails;
 
 function buildIDToken(grant_scope, subject) {
   console.log("build id token: " + subject);
+  console.log(grant_scope);
   const username = subject.replace("dcd:persons:", "");
   const idToken = {};
   // This is the openid 'profile' scope which should include
