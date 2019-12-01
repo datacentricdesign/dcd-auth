@@ -4,7 +4,7 @@ block content
     h1
     form(action="", method="POST")
         input(type="hidden", name="challenge", value=challenge)
-        input(type="hidden", name="raw_grant_scope", value=scopes)
+        input(type="hidden", name="scopes", value=scopes)
         input(type="hidden", name="_csrf", value=csrfToken)
 
         div(class="col50")
