@@ -119,10 +119,10 @@ class ConsentAPI extends API {
 
       this.logger.debug(req);
 
-      let grant_scope = req.body.grant_scope;
-      if (!Array.isArray(grant_scope)) {
-        grant_scope = [grant_scope];
-      }
+      let grant_scope = req.body.scopes.split(",");
+      // if (!Array.isArray(grant_scope)) {
+      //   grant_scope = [grant_scope];
+      // }
       // Seems like the user authenticated! Let's tell hydra...
       hydra
         .acceptConsentRequest(challenge, {
@@ -169,6 +169,7 @@ class ConsentAPI extends API {
       csrfToken: req.csrfToken(),
       challenge: challenge,
       requested_scope: buildDetailedScopes(scopes),
+      scopes: scopes.join(","),
       user: subject.replace("dcd:persons:", ""),
       client: client
     });
