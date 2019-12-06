@@ -80,6 +80,7 @@ function buildIDToken(grant_scope, subject) {
     idToken.given_name = username;
     idToken.family_name = "";
     idToken.profile = "";
+    idToken.grafana_role = "Editor";
   }
 
   // This is to fulfill the openid 'email' scope which returns
