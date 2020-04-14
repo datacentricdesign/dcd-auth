@@ -2,13 +2,15 @@ extends layout
 
 block content
     h1 Do you wish to sign out?
-    if error
-        if error.message
-            p= error.message
-        if error.hint
-            p = error.hint
-        if error.requirements
-            p = error.hint
+
+    span(style="color:#CC0000")
+        if error
+            if error.requirements
+                p= error.requirements
+            else if error.hint
+                p= error.hint
+            else if error.message
+                p= error.message
 
     form(action="/logout", method="POST")
         input(type="hidden", name="_csrf", value=csrfToken)

@@ -1,8 +1,16 @@
 extends layout
 
 block content
-    if error
-        p= error
+
+    span(style="color:#CC0000")
+        if error
+            if error.requirements
+                p= error.requirements
+            else if error.hint
+                p= error.hint
+            else if error.message
+                p= error.message
+
     form(action="/auth/signup", method="POST")
         input(type="hidden", name="_csrf", value=csrfToken)
         input(type="hidden", name="challenge", value=challenge)
