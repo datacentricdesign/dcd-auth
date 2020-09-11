@@ -16,7 +16,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "morgan": "^1.9.1",
-    "node-fetch": "^2.3.0",
+    "node-fetch": "^2.6.1",
     "pug": "^2.0.3",
     "serve-favicon": "^2.5.0",
     "url-join": "^4.0.0"
